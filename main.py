@@ -22,5 +22,5 @@ while not valid_input:
         print("Access granted")
         valid_input = True
     else:
-        print("\nWrong password, please try again")
+        print("Incorrect password, try again")
         login = input("\nEnter password to login: ")
