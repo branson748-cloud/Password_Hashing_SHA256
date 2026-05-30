@@ -6,21 +6,26 @@ def hash_password(password):
 def check_password(stored_hash, user_password):
     return stored_hash == hash_password(user_password)
 
-# Demo
+# Create password
 password = input("Create password: ")
 stored_hash = hash_password(password)
 
 print("\nHashed Password:")
 print(stored_hash)
 
-login = input("\nEnter password to login: ")
+# Login
+attempts = 3
 
-valid_input = False
+while attempts > 0:
+    login = input("\nEnter password: ")
 
-while not valid_input:
     if check_password(stored_hash, login):
         print("Access granted")
-        valid_input = True
+        break
+
+    attempts -= 1
+
+    if attempts > 0:
+        print(f"Incorrect password, {attempts} {'attempt' if attempts == 1 else 'attempts'} left")
     else:
-        print("Incorrect password, try again")
-        login = input("\nEnter password to login: ")
+        print("Access denied")
